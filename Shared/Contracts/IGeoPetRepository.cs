@@ -1,4 +1,4 @@
-﻿using GeoPetAPI.Shared.Domain;
+﻿using GeoPetAPI.Models;
 
 namespace GeoPetAPI.Shared.Contracts
 {

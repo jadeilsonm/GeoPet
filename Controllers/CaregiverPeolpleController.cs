@@ -1,5 +1,5 @@
-﻿using GeoPetAPI.Shared.Domain;
-using GeoPetAPI.Shared.Repositories;
+﻿using GeoPetAPI.Models;
+using GeoPetAPI.Shared.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +9,9 @@ namespace GeoPetAPI.Controllers
     [ApiController]
     public class CaregiverPeolpleController : ControllerBase
     {
-        private readonly GeoPetRepository _repository;
+        private readonly IGeoPetRepository _repository;
 
-        public CaregiverPeolpleController(GeoPetRepository repository)
+        public CaregiverPeolpleController(IGeoPetRepository repository)
         {
             _repository = repository;
         }

@@ -1,13 +1,13 @@
 ﻿using GeoPetAPI.Shared.Contracts;
-using GeoPetAPI.Shared.Domain;
+using GeoPetAPI.Models;
 
 namespace GeoPetAPI.Shared.Repositories
 {
     public class GeoPetRepository : IGeoPetRepository
     {
-        private readonly GeoPetContext _context;
+        private readonly IGeoPetContext _context;
 
-        public GeoPetRepository(GeoPetContext context)
+        public GeoPetRepository(IGeoPetContext context)
         {
             _context = context;
         }

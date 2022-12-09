@@ -1,6 +1,6 @@
 ﻿using GeoPetAPI.Shared.Enuns;
 
-namespace GeoPetAPI.Shared.Domain
+namespace GeoPetAPI.Models
 {
     public class Pet
     {

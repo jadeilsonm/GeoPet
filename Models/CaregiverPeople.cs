@@ -1,4 +1,4 @@
-﻿namespace GeoPetAPI.Shared.Domain
+﻿namespace GeoPetAPI.Models
 {
     public class CaregiverPeople
     {
