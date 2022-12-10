@@ -5,7 +5,7 @@
 namespace GeoPetAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class criandoModel : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,55 +14,44 @@ namespace GeoPetAPI.Migrations
                 name: "Peoples",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    PeopleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CEP = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Cep = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Peoples", x => x.Id);
+                    table.PrimaryKey("PK_Peoples", x => x.PeopleId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Pets",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    PetId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Carry = table.Column<int>(type: "int", nullable: false),
-                    CaregiverId = table.Column<int>(type: "int", nullable: false),
-                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CaregiverPeopleId = table.Column<int>(type: "int", nullable: true)
+                    PeopleId = table.Column<int>(type: "int", nullable: false),
+                    Breed = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pets", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Pets_Peoples_CaregiverPeopleId",
-                        column: x => x.CaregiverPeopleId,
-                        principalTable: "Peoples",
-                        principalColumn: "Id");
+                    table.PrimaryKey("PK_Pets", x => x.PetId);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pets_CaregiverPeopleId",
-                table: "Pets",
-                column: "CaregiverPeopleId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Pets");
+                name: "Peoples");
 
             migrationBuilder.DropTable(
-                name: "Peoples");
+                name: "Pets");
         }
     }
 }

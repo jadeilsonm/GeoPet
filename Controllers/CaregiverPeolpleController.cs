@@ -1,7 +1,9 @@
 ﻿using GeoPetAPI.Models;
+using GeoPetAPI.Services;
 using GeoPetAPI.Shared.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace GeoPetAPI.Controllers
 {
@@ -10,17 +12,32 @@ namespace GeoPetAPI.Controllers
     public class CaregiverPeolpleController : ControllerBase
     {
         private readonly IGeoPetRepository _repository;
+        private JsonSerializerOptions _options = new()
+        {
+            ReferenceHandler = ReferenceHandler.IgnoreCycles,
+            WriteIndented = true
+        };
 
         public CaregiverPeolpleController(IGeoPetRepository repository)
         {
             _repository = repository;
         }
 
-        [HttpPost("createLogin")]
-        public IActionResult NewPeople([FromBody] CaregiverPeople people)
+        [HttpPost("NewPeople")]
+        public IActionResult NewPeople(People people)
         {
             _repository.AddPeople(people);
-            return CreatedAtAction("created new People", people);
+            var token = new TokenGenerator().Generate(people);
+            return Ok(token);
+        }
+
+        [HttpGet("GetPeople")]
+        public IActionResult getPeople()
+        {
+            
+            var result = _repository.GetPeoples();
+           
+            return Ok(JsonSerializer.Serialize(result, _options));
         }
     }
 }

@@ -1,14 +1,18 @@
 ﻿using GeoPetAPI.Shared.Enuns;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GeoPetAPI.Models
 {
     public class Pet
     {
-        public int Id { get; set; }
+        [Key]
+        public int PetId { get; set; }
         public string? Name { get; set; }
         public int Age { get; set; }
         public Carry Carry { get; set; } = Carry.medium;
-        public int CaregiverId { get; set; }
+        [ForeignKey("PeopleId")]
+        public int PeopleId { get; set; }
         public string Breed { get; set; }
     }
 }

@@ -1,46 +1,55 @@
 ﻿using GeoPetAPI.Shared.Contracts;
 using GeoPetAPI.Models;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace GeoPetAPI.Shared.Repositories
 {
     public class GeoPetRepository : IGeoPetRepository
     {
         private readonly IGeoPetContext _context;
-
+        
         public GeoPetRepository(IGeoPetContext context)
         {
             _context = context;
         }
 
-        public void AddPeople(CaregiverPeople people)
+        public void AddPeople(People people)
         {
             _context.Peoples.Add(people);
             _context.SaveChanges();
         }
 
-        public IEnumerable<CaregiverPeople> GetPeoples()
+        public void AddPet(Pet pet)
+        {
+            _context.Pets.Add(pet);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<People> GetPeoples()
         {
             return _context.Peoples.ToList();
         }
-        public CaregiverPeople? GetPeople(int id)
+        public People? GetPeople(int id)
         {
             return _context.Peoples.Find(id);
         }
 
-        public void UpdatePeople(CaregiverPeople people)
+        public bool UpdatePeople(People people)
         {
             _context.Peoples.Update(people);
-            _context.SaveChanges();
+            return _context.SaveChanges() >= 1;
         }
 
-        public void RemovePeople(CaregiverPeople people)
+        public bool RemovePeople(People people)
         {
-            var returns = _context.Peoples.Find(people.Id);
+            var returns = _context.Peoples.Find(people.PeopleId);
             if (returns is not null)
             {
                 _context.Peoples.Remove(people);
-                _context.SaveChanges();
+                return _context.SaveChanges() >= 1;
             }
+            return false;
         }
     }
 }
