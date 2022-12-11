@@ -11,6 +11,7 @@ namespace GeoPetAPI.Controllers
     [ApiController]
     public class CaregiverPeolpleController : ControllerBase
     {
+        private readonly IViaCepService _clientCep;
         private readonly IGeoPetRepository _repository;
         private JsonSerializerOptions _options = new()
         {
@@ -18,14 +19,18 @@ namespace GeoPetAPI.Controllers
             WriteIndented = true
         };
 
-        public CaregiverPeolpleController(IGeoPetRepository repository)
+        public CaregiverPeolpleController(IGeoPetRepository repository, IViaCepService clientCep)
         {
             _repository = repository;
+            _clientCep = clientCep;
         }
 
         [HttpPost("NewPeople")]
-        public IActionResult NewPeople(People people)
+        public async Task<IActionResult> NewPeople(People people)
         {
+            var resultcep = await _clientCep.FindCep(people.Cep);
+            if (resultcep == null)
+                return NotFound("CEP Invalido");
             _repository.AddPeople(people);
             var token = new TokenGenerator().Generate(people);
             return Ok(token);
