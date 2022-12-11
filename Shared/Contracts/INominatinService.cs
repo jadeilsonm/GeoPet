@@ -2,5 +2,6 @@
 {
     public interface INominatinService
     {
+        Task<object> GetInfomatioByCep(string cep);
     }
 }
