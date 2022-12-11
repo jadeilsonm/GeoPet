@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Junior\\Documents\\Projetos\\GeoPetAPI\\GeoPetAPI.csproj": {}
+    "H:\\Projects\\GeoPet\\GeoPetAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Junior\\Documents\\Projetos\\GeoPetAPI\\GeoPetAPI.csproj": {
+    "H:\\Projects\\GeoPet\\GeoPetAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Junior\\Documents\\Projetos\\GeoPetAPI\\GeoPetAPI.csproj",
+        "projectUniqueName": "H:\\Projects\\GeoPet\\GeoPetAPI.csproj",
         "projectName": "GeoPetAPI",
-        "projectPath": "C:\\Users\\Junior\\Documents\\Projetos\\GeoPetAPI\\GeoPetAPI.csproj",
-        "packagesPath": "C:\\Users\\Junior\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Junior\\Documents\\Projetos\\GeoPetAPI\\obj\\",
+        "projectPath": "H:\\Projects\\GeoPet\\GeoPetAPI.csproj",
+        "packagesPath": "C:\\Users\\jadei\\.nuget\\packages\\",
+        "outputPath": "H:\\Projects\\GeoPet\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Junior\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jadei\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -139,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

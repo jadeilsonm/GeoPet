@@ -11,5 +11,6 @@
                 Password=Password12!;
                 TrustServerCertificate=True
             ";
+        public const string URL_BASE_VIA_CEP = "http://viacep.com.br/";
     }
 }

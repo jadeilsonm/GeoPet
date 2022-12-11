@@ -2,8 +2,8 @@
 using GeoPetAPI.Services;
 using GeoPetAPI.Shared.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GeoPetAPI.Controllers
 {
@@ -34,9 +34,9 @@ namespace GeoPetAPI.Controllers
         [HttpGet("GetPeople")]
         public IActionResult getPeople()
         {
-            
+
             var result = _repository.GetPeoples();
-           
+
             return Ok(JsonSerializer.Serialize(result, _options));
         }
     }
