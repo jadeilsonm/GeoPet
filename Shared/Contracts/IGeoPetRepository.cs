@@ -11,5 +11,6 @@ namespace GeoPetAPI.Shared.Contracts
         bool RemovePeople(People people);
 
         void AddPet(Pet pet);
+        Pet? GetPet(int id);
     }
 }

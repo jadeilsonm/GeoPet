@@ -12,11 +12,11 @@ namespace GeoPetAPI.Services
             _client.BaseAddress = new Uri(Defaults.URL_BASE_NOMINATION);
         }
 
-        public async Task<object> GetInfomatioByCep(string cep)
+        public async Task<object> GetInfomatioByCep(string lat, string lon)
         {
-            if (cep is null || cep.Replace(" ", "").Length != 8)
+            if (lat is null || lon is null)
                 return false;
-            var response = await _client.GetAsync($"");
+            var response = await _client.GetAsync($"reverse?format=jsonv2&lat={lat}&lon={lon}");
             if (!response.IsSuccessStatusCode)
                 return false;
             var result = await response.Content.ReadFromJsonAsync<object>();

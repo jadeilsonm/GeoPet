@@ -35,6 +35,10 @@ namespace GeoPetAPI.Shared.Repositories
             return _context.Peoples.Find(id);
         }
 
+        public Pet? GetPet(int id)
+        {
+            return _context.Pets.FirstOrDefault(x => x.PetId == id);
+        }
         public bool UpdatePeople(People people)
         {
             _context.Peoples.Update(people);
