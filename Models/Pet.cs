@@ -8,11 +8,13 @@ namespace GeoPetAPI.Models
     {
         [Key]
         public int PetId { get; set; }
-        public string? Name { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
         public int Age { get; set; }
         public Carry Carry { get; set; } = Carry.medium;
         [ForeignKey("PeopleId")]
         public int PeopleId { get; set; }
+        [MaxLength(100)]
         public string Breed { get; set; }
     }
 }

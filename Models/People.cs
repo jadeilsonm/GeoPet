@@ -9,10 +9,14 @@ namespace GeoPetAPI.Models
     {
         [Key]
         public int PeopleId { get; set; }
-        public string? Name { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public string? Cep { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
+        [MaxLength(150)]
+        public string Email { get; set; }
+        [MaxLength(200)]
+        public string Password { get; set; }
+        [MaxLength(8)]
+        public string Cep { get; set; }
 
         private Collection<Pet> _pets = new Collection<Pet>();
         public virtual Collection<Pet>? Pets
