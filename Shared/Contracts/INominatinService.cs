@@ -2,6 +2,6 @@
 {
     public interface INominatinService
     {
-        Task<object> GetInfomatioByCep(string lat, string lon);
+        Task<object> GetInfomatioByLatAndLon(string lat, string lon);
     }
 }

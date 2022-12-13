@@ -12,7 +12,7 @@ namespace GeoPetAPI.Services
             _client.BaseAddress = new Uri(Defaults.URL_BASE_NOMINATION);
         }
 
-        public async Task<object> GetInfomatioByCep(string lat, string lon)
+        public async Task<object> GetInfomatioByLatAndLon(string lat, string lon)
         {
             if (lat is null || lon is null)
                 return false;
@@ -20,7 +20,8 @@ namespace GeoPetAPI.Services
             if (!response.IsSuccessStatusCode)
                 return false;
             var result = await response.Content.ReadFromJsonAsync<object>();
-            return result!;
+            Console.WriteLine(result!.GetHashCode());
+            return result!.GetHashCode();
         }
     }
 }

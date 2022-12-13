@@ -12,7 +12,7 @@ namespace GeoPetAPI.Controllers
     public class PetsController : ControllerBase
     {
         private readonly IGeoPetRepository _repository;
-        private JsonSerializerOptions _options = new()
+        private readonly JsonSerializerOptions _options = new()
         {
             ReferenceHandler = ReferenceHandler.IgnoreCycles,
             WriteIndented = true
@@ -23,7 +23,7 @@ namespace GeoPetAPI.Controllers
             _repository = repository;
         }
 
-        [HttpPost("newPet")]
+        [HttpPost]
         public IActionResult NewPeople(Pet pet)
         {
             _repository.AddPet(pet);

@@ -5,12 +5,14 @@ namespace GeoPetAPI.Services
 {
     public static class QrCodeGenerator
     {
+        // ref -> "https://balta.io/blog/aspnet-qrcode"
         public static Bitmap GenerateImage(string url)
         {
-            var qrGenerator = new QRCodeGenerator();
-            var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
-            var qrCode = new QRCoder(qrCodeData);
-            var qrCodeImage = qrCode.GetGraphic(10);
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator(); 
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q); 
+            QRCode qrCode = new QRCode(qrCodeData); 
+            Bitmap qrCodeImage = qrCode.GetGraphic(3);
             return qrCodeImage;
         }
 

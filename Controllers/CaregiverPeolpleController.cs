@@ -13,7 +13,7 @@ namespace GeoPetAPI.Controllers
     {
         private readonly IViaCepService _clientCep;
         private readonly IGeoPetRepository _repository;
-        private JsonSerializerOptions _options = new()
+        private readonly JsonSerializerOptions _options = new()
         {
             ReferenceHandler = ReferenceHandler.IgnoreCycles,
             WriteIndented = true

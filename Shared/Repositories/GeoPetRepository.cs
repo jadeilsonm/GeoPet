@@ -1,7 +1,5 @@
 ﻿using GeoPetAPI.Shared.Contracts;
 using GeoPetAPI.Models;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 
 namespace GeoPetAPI.Shared.Repositories
 {
