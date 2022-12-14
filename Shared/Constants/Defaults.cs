@@ -12,6 +12,6 @@
                 TrustServerCertificate=True
             ";
         public const string URL_BASE_VIA_CEP = "http://viacep.com.br/";
-        public const string URL_BASE_NOMINATION = "http://nominatim.openstreetmap.org/";
+        public const string URL_BASE_NOMINATION = "https://nominatim.openstreetmap.org/";
     }
 }

@@ -1,9 +1,9 @@
 ﻿using GeoPetAPI.Models;
-using GeoPetAPI.Shared.Contracts;
-using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
 using GeoPetAPI.Services;
-using System.Text.Json;
+using GeoPetAPI.Shared.Contracts;
+using GeoPetAPI.Shared.Helprs;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace GeoPetAPI.Controllers
 {
@@ -12,11 +12,6 @@ namespace GeoPetAPI.Controllers
     public class PetsController : ControllerBase
     {
         private readonly IGeoPetRepository _repository;
-        private readonly JsonSerializerOptions _options = new()
-        {
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
 
         public PetsController(IGeoPetRepository repository)
         {
@@ -30,11 +25,33 @@ namespace GeoPetAPI.Controllers
             return Ok(pet);
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet]
+        public IActionResult GetPets()
+        {
+            var pet = _repository.GetPets();
+            var p = Serializer.Serializar(pet);
+            return Ok(JsonConvert.DeserializeObject<IEnumerable<Pet>>(p));
+        }
+
+        [HttpGet("{id}")]
         public IActionResult GetPet(int id)
         {
             var pet = _repository.GetPet(id);
-            return pet == null ? NotFound("NotFound") : Ok(pet);
+            return pet == null ? NotFound("NotFound") : Ok(JsonConvert.DeserializeObject<Pet>(Serializer.Serializar(pet)));
+        }
+
+        [HttpPut]
+        public IActionResult UpdatePet(Pet pet)
+        {
+            var result = _repository.UpdatePet(pet);
+            return result ? Ok(pet) : NotFound("Pet not found");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePet(int id)
+        {
+            var result = _repository.RemovePet(id);
+            return result ? Ok("Remuved Ok") : NotFound("Pet not found");
         }
 
         [HttpGet("qrcode/{id}")]
@@ -43,7 +60,8 @@ namespace GeoPetAPI.Controllers
             var pet = _repository.GetPet(id);
             if (pet is null)
                 return NotFound("Information Not Found Pet");
-            var image = QrCodeGenerator.GenerateByteArray(JsonSerializer.Serialize(pet, _options));
+            
+            var image = QrCodeGenerator.GenerateByteArray(Serializer.Serializar(pet));
             return File(image, "image/jpeg");
         }
     }

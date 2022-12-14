@@ -19,6 +19,7 @@ namespace GeoPetAPI.Models
         public string Cep { get; set; }
 
         private Collection<Pet> _pets = new Collection<Pet>();
+        [JsonIgnore]
         public virtual Collection<Pet>? Pets
         {
             get => _lazyLoader?.Load(this, ref _pets);

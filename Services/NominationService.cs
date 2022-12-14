@@ -1,5 +1,6 @@
 ﻿using GeoPetAPI.Shared.Constants;
 using GeoPetAPI.Shared.Contracts;
+using System.Reflection;
 
 namespace GeoPetAPI.Services
 {
@@ -14,14 +15,23 @@ namespace GeoPetAPI.Services
 
         public async Task<object> GetInfomatioByLatAndLon(string lat, string lon)
         {
-            if (lat is null || lon is null)
-                return false;
-            var response = await _client.GetAsync($"reverse?format=jsonv2&lat={lat}&lon={lon}");
+            lat = lat.Trim();
+            lon = lon.Trim();
+            if (lat.Length == 0 || lon.Length == 0)
+                throw new ArgumentNullException();
+            AddUserAgent(_client);
+            var response = await _client.GetAsync($"reverse?lat={lat}&lon={lon}&zoom=10&format=json");
             if (!response.IsSuccessStatusCode)
-                return false;
+                throw new NullReferenceException();
             var result = await response.Content.ReadFromJsonAsync<object>();
-            Console.WriteLine(result!.GetHashCode());
-            return result!.GetHashCode();
+            return result!;
+        }
+
+        private static void AddUserAgent(HttpClient httpClient)
+        {
+            httpClient.DefaultRequestHeaders.UserAgent.Clear();
+            httpClient.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue("f1ana.Nominatim.API", 
+                                                           Assembly.GetExecutingAssembly().GetName().Version.ToString()));
         }
     }
 }

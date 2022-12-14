@@ -6,6 +6,7 @@ namespace GeoPetAPI.Services
     public static class QrCodeGenerator
     {
         // ref -> "https://balta.io/blog/aspnet-qrcode"
+        // gitHub -> "https://github.com/codebude/QRCoder"
         public static Bitmap GenerateImage(string url)
         {
 

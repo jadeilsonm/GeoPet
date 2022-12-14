@@ -3,6 +3,7 @@ using GeoPetAPI.Shared.Constants;
 using GeoPetAPI.Shared.Contracts;
 using GeoPetAPI.Shared.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -14,11 +15,12 @@ builder.Services.AddScoped<IGeoPetContext, GeoPetContext>();
 builder.Services.AddScoped<IGeoPetRepository, GeoPetRepository>();
 builder.Services.AddControllers();
 
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
-//builder.Services.AddHttpClient<INominatinService, NominationService>();
+// builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
+builder.Services.AddHttpClient<INominatinService, NominationService>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -1,9 +1,9 @@
 ﻿using GeoPetAPI.Models;
 using GeoPetAPI.Services;
 using GeoPetAPI.Shared.Contracts;
+using GeoPetAPI.Shared.Helprs;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace GeoPetAPI.Controllers
 {
@@ -13,11 +13,6 @@ namespace GeoPetAPI.Controllers
     {
         private readonly IViaCepService _clientCep;
         private readonly IGeoPetRepository _repository;
-        private readonly JsonSerializerOptions _options = new()
-        {
-            ReferenceHandler = ReferenceHandler.IgnoreCycles,
-            WriteIndented = true
-        };
 
         public CaregiverPeolpleController(IGeoPetRepository repository, IViaCepService clientCep)
         {
@@ -25,7 +20,7 @@ namespace GeoPetAPI.Controllers
             _clientCep = clientCep;
         }
 
-        [HttpPost("NewPeople")]
+        [HttpPost]
         public async Task<IActionResult> NewPeople(People people)
         {
             var resultcep = await _clientCep.FindCep(people.Cep);
@@ -36,13 +31,36 @@ namespace GeoPetAPI.Controllers
             return Ok(token);
         }
 
-        [HttpGet("GetPeople")]
-        public IActionResult getPeople()
+        [HttpGet]
+        public IActionResult GetPeoples()
         {
-
             var result = _repository.GetPeoples();
 
-            return Ok(JsonSerializer.Serialize(result, _options));
+            return Ok(JsonConvert.DeserializeObject<IEnumerable<CarregiverPeople>>(Serializer.Serializar(result)));
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetPeople(int id)
+        {
+            var result = _repository.GetPeople(id);
+
+            return result != null ? Ok(JsonConvert.DeserializeObject<CarregiverPeople>(Serializer.Serializar(result))) : NotFound("People not found");
+        }
+
+        [HttpPut]
+        public IActionResult UpdatePeople(People people)
+        {
+            var result = _repository.UpdatePeople(people);
+
+            return result ? Ok(people) : NotFound("People not found");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePeople(int id)
+        {
+            var result = _repository.RemovePeople(id);
+
+            return result ? Ok("Remuved Ok") : NotFound("People not found");
         }
     }
 }
