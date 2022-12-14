@@ -11,13 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("d52afb60-2245-4c75-a99e-ac51ee2ee95d")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("GeoPetAPI")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("GeoPetApi.UnitTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("GeoPetAPI")]
-[assembly: System.Reflection.AssemblyTitleAttribute("GeoPetAPI")]
+[assembly: System.Reflection.AssemblyProductAttribute("GeoPetApi.UnitTest")]
+[assembly: System.Reflection.AssemblyTitleAttribute("GeoPetApi.UnitTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

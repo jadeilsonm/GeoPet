@@ -40,7 +40,6 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
 		<PackageReference Include="Moq" Version="4.18.3" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-		<PackageReference Include="Nominatim.API" Version="2.0.0" />
 		<PackageReference Include="QRCoder" Version="1.4.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
