@@ -1,7 +1,10 @@
 ﻿using GeoPetAPI.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GeoPetAPI.Shared.Contracts
 {
+    // Não tem Logica de negocio 
+    [ExcludeFromCodeCoverage]
     public class CarregiverPeople
     {
         public int PeopleId { get; set; }

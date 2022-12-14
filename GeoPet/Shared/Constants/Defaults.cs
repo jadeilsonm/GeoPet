@@ -1,5 +1,9 @@
-﻿namespace GeoPetAPI.Shared.Constants
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace GeoPetAPI.Shared.Constants
 {
+    // Não tem Logica de negocio 
+    [ExcludeFromCodeCoverage]
     public static class Defaults
     {
         public const string KEY = "p9ODSdsIb0cLoIQk8Kq0H0x3qYCm6eZq";

@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 
 namespace GeoPetAPI.Models
 {
+    // Não tem Logica de negocio 
+    [ExcludeFromCodeCoverage]
     public class People
     {
         [Key]

@@ -1,9 +1,12 @@
 ﻿using GeoPetAPI.Shared.Enuns;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GeoPetAPI.Models
 {
+    // Não tem Logica de negocio 
+    [ExcludeFromCodeCoverage]
     public class Pet
     {
         [Key]

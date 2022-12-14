@@ -19,7 +19,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
+builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
 builder.Services.AddHttpClient<INominatinService, NominationService>();
 builder.Services.AddAuthentication(options =>
 {
