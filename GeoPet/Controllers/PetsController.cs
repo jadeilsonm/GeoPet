@@ -2,6 +2,7 @@
 using GeoPetAPI.Services;
 using GeoPetAPI.Shared.Contracts;
 using GeoPetAPI.Shared.Helprs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -19,6 +20,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult NewPeople(Pet pet)
         {
             _repository.AddPet(pet);
@@ -26,6 +28,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetPets()
         {
             var pet = _repository.GetPets();
@@ -34,6 +37,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetPet(int id)
         {
             var pet = _repository.GetPet(id);
@@ -41,6 +45,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult UpdatePet(Pet pet)
         {
             var result = _repository.UpdatePet(pet);
@@ -48,6 +53,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeletePet(int id)
         {
             var result = _repository.RemovePet(id);
@@ -55,6 +61,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpGet("qrcode/{id}")]
+        [Authorize]
         public IActionResult GetQrCode(int id)
         {
             var pet = _repository.GetPet(id);

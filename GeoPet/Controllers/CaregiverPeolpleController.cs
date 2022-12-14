@@ -2,6 +2,7 @@
 using GeoPetAPI.Services;
 using GeoPetAPI.Shared.Contracts;
 using GeoPetAPI.Shared.Helprs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -31,7 +32,16 @@ namespace GeoPetAPI.Controllers
             return Ok(token);
         }
 
+        [HttpGet("/generateToken/{id}")]
+        public async Task<IActionResult> GenerateToken(int id)
+        {
+            var people = _repository.GetPeople(id);
+            var token = new TokenGenerator().Generate(people);
+            return Ok(token);
+        }
+
         [HttpGet]
+        [Authorize]
         public IActionResult GetPeoples()
         {
             var result = _repository.GetPeoples();
@@ -40,6 +50,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetPeople(int id)
         {
             var result = _repository.GetPeople(id);
@@ -48,6 +59,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult UpdatePeople(People people)
         {
             var result = _repository.UpdatePeople(people);
@@ -56,6 +68,7 @@ namespace GeoPetAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult DeletePeople(int id)
         {
             var result = _repository.RemovePeople(id);
