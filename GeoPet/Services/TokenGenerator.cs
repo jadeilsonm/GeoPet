@@ -17,9 +17,8 @@ namespace GeoPetAPI.Services
             {
                 Subject = AddClaims(people),
                 SigningCredentials = new SigningCredentials(
-            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Defaults.KEY)),
-            SecurityAlgorithms.HmacSha256Signature
-                          ),
+                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Defaults.KEY)),
+                    SecurityAlgorithms.HmacSha256Signature),
                 Expires = DateTime.UtcNow.AddMinutes(Defaults.EXPIRATION_TIME)
             };
             var token = tokenHandle.CreateToken(tokenDescript);
